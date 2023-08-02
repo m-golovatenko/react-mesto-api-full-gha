@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/error-handler');
 const limiter = require('./middlewares/rate-limit');
@@ -10,10 +11,15 @@ const limiter = require('./middlewares/rate-limit');
 const { login, createUser } = require('./controllers/users');
 const { validationLogin, validationCreateUser } = require('./middlewares/validation');
 
-const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const { PORT = 4000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 const NotFoundError = require('./errors/NotFoundError');
 
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
+
 app.use(limiter);
 
 app.use(bodyParser.json());
