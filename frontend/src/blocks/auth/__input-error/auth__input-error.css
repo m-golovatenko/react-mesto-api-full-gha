@@ -1,0 +1,20 @@
+.auth__input-error {
+  margin-top: 5px;
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  opacity: 0;
+  height: 25px;
+}
+
+.auth__input-error:last-of-type {
+  margin-bottom: 186px;
+}
+
+@media (max-width: 540px) {
+  .auth__input-error:last-of-type {
+    margin-bottom: 143px;
+  }
+}

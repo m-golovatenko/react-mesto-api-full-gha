@@ -1,0 +1,20 @@
+.auth__link {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding-left: 5px;
+}
+
+.auth__link:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.auth__link:active {
+  border-bottom: 1px solid #fff;
+}
+
+.auth__link:focus {
+  outline: 1px solid fff;
+  outline-offset: 1px;
+}
