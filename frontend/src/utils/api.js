@@ -24,7 +24,6 @@ class Api {
   changeUserInfo(data) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -44,7 +43,6 @@ class Api {
   addCard(data) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -57,7 +55,6 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      credentials: 'include',
       headers: this._headers
     }).then(this._checkStatus);
   }
@@ -66,7 +63,6 @@ class Api {
   likeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
-      credentials: 'include',
       headers: this._headers
     }).then(this._checkStatus);
   }
@@ -75,7 +71,6 @@ class Api {
   unlikeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
-      credentials: 'include',
       headers: this._headers
     }).then(this._checkStatus);
   }
@@ -93,7 +88,6 @@ class Api {
   changeAvatar(avatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify(avatar)
     }).then(this._checkStatus);
