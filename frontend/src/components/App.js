@@ -42,7 +42,7 @@ function App() {
         }
         setLoggedIn(true);
         setHeaderInfo(data.email);
-        navigate('/');
+        navigate('/', {replace: true});
       })
       .catch(e => {
         setLoggedIn(false);
@@ -225,7 +225,7 @@ function App() {
             <Route
               path="/sign-in"
               element={
-                <Login handleLogin={() => setLoggedIn(true)} setHeaderInfo={setHeaderInfo} setInfoTooltipPopupOpen={setInfoTooltipPopupOpen}/>
+                <Login handleLogin={() => setLoggedIn(true)} setHeaderInfo={setHeaderInfo} setInfoTooltipPopupOpen={setInfoTooltipPopupOpen} setCurrentUser = {setCurrentUser}/>
               }
             />
             <Route
