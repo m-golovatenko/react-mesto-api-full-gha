@@ -225,7 +225,7 @@ function App() {
             <Route
               path="/sign-in"
               element={
-                <Login handleLogin={() => setLoggedIn(true)} setHeaderInfo={setHeaderInfo} />
+                <Login handleLogin={() => setLoggedIn(true)} setHeaderInfo={setHeaderInfo} setInfoTooltipPopupOpen={setInfoTooltipPopupOpen}/>
               }
             />
             <Route

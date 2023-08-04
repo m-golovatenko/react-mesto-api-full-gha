@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as auth from '../utils/auth';
 
-function Login({ handleLogin, setHeaderInfo }) {
+function Login({ handleLogin, setHeaderInfo, setInfoTooltipPopupOpen }) {
   const [formValue, setFormValue] = React.useState({ password: '', email: '' });
   const navigate = useNavigate();
 
@@ -27,7 +27,9 @@ function Login({ handleLogin, setHeaderInfo }) {
         navigate('/');
       })
 
-      .catch(err => console.error(`Ошибка при входе. Код ошибки: ${err}`));
+      .catch(err => {
+        setInfoTooltipPopupOpen(true);
+        console.error(`Ошибка при входе. Код ошибки: ${err}`)});
   }
 
   return (
