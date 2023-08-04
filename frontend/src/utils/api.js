@@ -14,17 +14,23 @@ class Api {
   }
 
   //Get User Info - GET
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this._url}/users/me`, {
-      headers: this._headers
+      headers: 
+      {...this._headers,
+        Authorization: `Bearer ${token}`,
+      }
     }).then(this._checkStatus);
   }
 
   //Cange User Info - PATCH
-  changeUserInfo(data) {
+  changeUserInfo(data, token) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: 
+      {...this._headers,
+        Authorization: `Bearer ${token}`,
+      }, 
       body: JSON.stringify({
         name: data.name,
         about: data.about
@@ -33,17 +39,23 @@ class Api {
   }
 
   //Get Initial Cards - GET
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this._url}/cards`, {
-      headers: this._headers
+      headers: 
+      {...this._headers,
+        Authorization: `Bearer ${token}`,
+      }
     }).then(this._checkStatus);
   }
 
   //Add Card - POST
-  addCard(data) {
+  addCard(data, token) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: 
+      {...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: data.name,
         link: data.link
@@ -52,43 +64,35 @@ class Api {
   }
 
   //Delete Card - DELETE
-  deleteCard(cardId) {
+  deleteCard(cardId, token) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers
-    }).then(this._checkStatus);
-  }
-
-  //Like Card - PUT
-  likeCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: 'PUT',
-      headers: this._headers
-    }).then(this._checkStatus);
-  }
-
-  //Unlike Card - DELETE
-  unlikeCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
+      headers: 
+      {...this._headers,
+        Authorization: `Bearer ${token}`,
+      }
     }).then(this._checkStatus);
   }
 
   //Toggle LIke
-  changeLikeCardStatus(cardId, isLiked) {
-    if (!isLiked) {
-      return this.likeCard(cardId);
-    } else {
-      return this.unlikeCard(cardId);
-    }
+  changeLikeCardStatus(cardId, isLiked, token) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: `${!isLiked ? 'PUT' : 'DELETE'}`, 
+      headers: 
+      {...this._headers,
+        Authorization: `Bearer ${token}`,
+      }
+    }).then(this._checkStatus);
   }
 
   //Change Avatar - PATCH
-  changeAvatar(avatar) {
+  changeAvatar(avatar, token) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: 
+      {...this._headers,
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(avatar)
     }).then(this._checkStatus);
   }
@@ -97,7 +101,6 @@ class Api {
 export const api = new Api({
   url: 'http://localhost:4000',
   headers: {
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
   }
 });
