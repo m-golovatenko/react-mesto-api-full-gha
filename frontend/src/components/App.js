@@ -63,8 +63,9 @@ function App() {
   }
 
   React.useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
     if (isLoggedIn) {
-      Promise.all([api.getUserInfo(), api.getInitialCards()])
+      Promise.all([api.getUserInfo(jwt), api.getInitialCards(jwt)])
         .then(([userData, cardData]) => {
           setCurrentUser(userData);
           setCards(cardData);
@@ -104,9 +105,10 @@ function App() {
   }
 
   function handleCardLike(card) {
+    const jwt = localStorage.getItem('jwt');
     const isLiked = card.likes.some(i => i === currentUser._id);
     api
-      .changeLikeCardStatus(card._id, isLiked)
+      .changeLikeCardStatus(card._id, isLiked, jwt)
       .then(newCard => {
         setCards(state => state.map(c => (c._id === card._id ? newCard : c)));
       })
@@ -114,9 +116,10 @@ function App() {
   }
 
   function handleCardDelete() {
+    const jwt = localStorage.getItem('jwt');
     setLoading(true);
     api
-      .deleteCard(selectedCard._id)
+      .deleteCard(selectedCard._id, jwt)
       .then(() => {
         setCards(state => state.filter(c => c._id !== selectedCard._id));
       })
@@ -130,9 +133,10 @@ function App() {
   }
 
   function handleUpdateUser(userData) {
+    const jwt = localStorage.getItem('jwt');
     setLoading(true);
     api
-      .changeUserInfo(userData)
+      .changeUserInfo(userData, jwt)
       .then(userData => {
         setCurrentUser(userData);
         closeAllPopups();
@@ -144,9 +148,10 @@ function App() {
   }
 
   function handleUpdateAvatar(avatar) {
+    const jwt = localStorage.getItem('jwt');
     setLoading(true);
     api
-      .changeAvatar(avatar)
+      .changeAvatar(avatar, jwt)
       .then(avatar => {
         setCurrentUser(avatar);
         closeAllPopups();
@@ -158,9 +163,10 @@ function App() {
   }
 
   function handleAddPlaceSubmit(cardData) {
+    const jwt = localStorage.getItem('jwt');
     setLoading(true);
     api
-      .addCard(cardData)
+      .addCard(cardData, jwt)
       .then(newCard => {
         setCards([newCard, ...cards]);
         closeAllPopups();
