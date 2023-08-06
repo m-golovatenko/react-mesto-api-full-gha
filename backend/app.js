@@ -17,7 +17,7 @@ const NotFoundError = require('./errors/NotFoundError');
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000', 'm-golovatenko.nomoreparties.co'],
   credentials: true,
 }));
 app.use(requestLogger);
