@@ -53,7 +53,7 @@ function Login({ handleLogin, setHeaderInfo, setInfoTooltipPopupOpen, setCurrent
         <input
           id="auth__input-password"
           className="auth__input auth__input_type_password"
-          type="text"
+          type="password"
           name="password"
           placeholder="Пароль"
           minLength="6"
