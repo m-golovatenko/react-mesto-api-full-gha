@@ -7,7 +7,7 @@ const cors = require('cors');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/error-handler');
 const limiter = require('./middlewares/rate-limit');
-
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { login, createUser } = require('./controllers/users');
 const { validationLogin, validationCreateUser } = require('./middlewares/validation');
 
@@ -19,6 +19,7 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true,
 }));
+app.use(requestLogger);
 
 app.use(limiter);
 
@@ -33,6 +34,7 @@ app.post('/signup', validationCreateUser, createUser);
 app.use('*', () => {
   throw new NotFoundError('Страницы не существует.');
 });
+app.use(errorLogger);
 
 app.use(errors());
 app.use(errorHandler);
