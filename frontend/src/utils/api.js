@@ -99,7 +99,9 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'http://localhost:4000',
+  //url: 'http://localhost:4000',
+  url: 'https://api.m-golovatenko.nomoreparties.co',
+  
   headers: {
     'Content-Type': 'application/json'
   }
