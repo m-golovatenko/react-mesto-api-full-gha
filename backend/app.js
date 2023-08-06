@@ -16,10 +16,7 @@ const { PORT = 4000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.en
 const NotFoundError = require('./errors/NotFoundError');
 
 const app = express();
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://m-golovatenko.nomoreparties.co', 'https://api.m-golovatenko.nomoreparties.co'],
-  credentials: true,
-}));
+app.use(cors());
 app.use(requestLogger);
 
 app.use(limiter);
@@ -29,6 +26,11 @@ app.use(helmet());
 app.use('/users', auth, require('./routes/users'));
 app.use('/cards', auth, require('./routes/cards'));
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.post('/signin', validationLogin, login);
 app.post('/signup', validationCreateUser, createUser);
 
