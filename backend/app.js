@@ -1,6 +1,6 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
@@ -16,7 +16,10 @@ const { PORT = 4000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.en
 const NotFoundError = require('./errors/NotFoundError');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://m-golovatenko.nomoreparties.co',
+  credentials: true,
+}));
 app.use(requestLogger);
 
 app.use(limiter);
