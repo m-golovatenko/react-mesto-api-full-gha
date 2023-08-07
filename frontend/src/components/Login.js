@@ -61,7 +61,7 @@ function Login({ handleLogin, setHeaderInfo, setInfoTooltipPopupOpen, setCurrent
           value={formValue.password}
           onChange={handleChange}
           required
-          autocomplete="off"
+          autocomplete="current-password"
         />
         <span className="auth__input-error auth__input-name-error"></span>
         <button className="auth__save-button" type="submit" aria-label="Войти">

@@ -63,7 +63,7 @@ function Register({ setSuccessed, setInfoTooltipPopupOpen }) {
           minLength="2"
           maxLength="40"
           required
-          autocomplete="off"
+          autocomplete="new-password"
         />
         <span className="auth__input-error auth__input-name-error"></span>
         <button
