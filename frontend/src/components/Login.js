@@ -48,6 +48,7 @@ function Login({ handleLogin, setHeaderInfo, setInfoTooltipPopupOpen, setCurrent
           value={formValue.email}
           onChange={handleChange}
           required
+          autoComplete="off"
         />
         <span className="auth__input-error auth__input-name-error"></span>
         <input
@@ -61,7 +62,7 @@ function Login({ handleLogin, setHeaderInfo, setInfoTooltipPopupOpen, setCurrent
           value={formValue.password}
           onChange={handleChange}
           required
-          autocomplete="current-password"
+          autoComplete="off"
         />
         <span className="auth__input-error auth__input-name-error"></span>
         <button className="auth__save-button" type="submit" aria-label="Войти">
