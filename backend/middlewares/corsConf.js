@@ -1,6 +1,9 @@
 const allowedCors = [
-  'https://localhost:3000',
+  'http://localhost:3000',
   'https://m-golovatenko.nomoreparties.co',
+  'http://m-golovatenko.nomoreparties.co',
+  'https://api.m-golovatenko.nomoreparties.co',
+  'http://api.m-golovatenko.nomoreparties.co',
 ];
 
 module.exports = (req, res, next) => {
