@@ -48,7 +48,7 @@ function Register({ setSuccessed, setInfoTooltipPopupOpen }) {
           value={formValue.email}
           onChange={handleChange}
           required
-          autoComplete="off"
+          autoComplete="email"
         />
 
         <span className="auth__input-error auth__input-name-error"></span>
